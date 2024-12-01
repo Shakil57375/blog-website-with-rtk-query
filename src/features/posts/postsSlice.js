@@ -26,9 +26,10 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
                 });
                 return postAdapter.setAll(loadedPosts, initialState);
             },
-            providesTags : (result, error, arg) =>{
-                
-            }
+            providesTags : (result, error, arg) =>[
+                {type : "Post", id : "LIST"},
+                ...result.ids.map(id => ({type : "Post", id}))
+            ]
         })
     })
 })
