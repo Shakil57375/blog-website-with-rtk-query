@@ -1,4 +1,4 @@
-t import { createEntityAdapter } from "@reduxjs/toolkit";
+t import { createEntityAdapter, createSelector } from "@reduxjs/toolkit";
 import { apiSlice } from "../api/apiSlice";
 import { sub } from "date-fns";
 const postAdapter = createEntityAdapter({
@@ -42,3 +42,7 @@ export const { useGetPostsQuery } = extendedApiSlice;
 // returns the query result object
 export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select()
 
+const selectPostsData = createSelector(
+    selectPostsResult,
+    (result) => result.data // normalized state object with ids and entities
+)
