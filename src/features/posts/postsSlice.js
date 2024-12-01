@@ -1,6 +1,7 @@
 import { createEntityAdapter, createSelector } from "@reduxjs/toolkit";
 import { apiSlice } from "../api/apiSlice";
 import { sub } from "date-fns";
+
 const postAdapter = createEntityAdapter({
   sortComparer: (a, b) => b.date.localeCompare(a.date),
 });
@@ -26,7 +27,8 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
             };
           return post;
         });
-        return postAdapter.setAll(loadedPosts, initialState);
+        // Correct the argument order
+        return postAdapter.setAll(initialState, loadedPosts);
       },
       providesTags: (result, error, arg) => [
         { type: "Post", id: "LIST" },
@@ -47,7 +49,6 @@ const selectPostsData = createSelector(
 );
 
 // getSelectors create these selectors and we rename them with aliases using destructuring
-
 export const {
   selectAll: selectAllPosts,
   selectById: selectPostById,
