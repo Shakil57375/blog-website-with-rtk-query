@@ -4,7 +4,6 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { selectPostById, useDeletePostMutation, useUpdatePostMutation } from './postsSlice'
 import { selectAllUsers } from '../users/usersSlice'
 
-
 const EditPostForm = () => {
     const { postId } = useParams()
     const navigate = useNavigate()
@@ -21,8 +20,8 @@ const EditPostForm = () => {
 
     if (!post) {
         return (
-            <section>
-                <h2>Post not found!</h2>
+            <section className="p-6 bg-red-50 text-center">
+                <h2 className="text-xl font-bold text-red-600">Post not found!</h2>
             </section>
         )
     }
@@ -31,13 +30,12 @@ const EditPostForm = () => {
     const onContentChanged = e => setContent(e.target.value)
     const onAuthorChanged = e => setUserId(Number(e.target.value))
 
-    const canSave = [title, content, userId].every(Boolean) && !isLoading;
+    const canSave = [title, content, userId].every(Boolean) && !isLoading
 
     const onSavePostClicked = async () => {
         if (canSave) {
             try {
                 await updatePost({ id: post.id, title, body: content, userId }).unwrap()
-
                 setTitle('')
                 setContent('')
                 setUserId('')
@@ -58,7 +56,6 @@ const EditPostForm = () => {
     const onDeletePostClicked = async () => {
         try {
             await deletePost({ id: post.id }).unwrap()
-
             setTitle('')
             setContent('')
             setUserId('')
@@ -69,42 +66,59 @@ const EditPostForm = () => {
     }
 
     return (
-        <section>
-            <h2>Edit Post</h2>
-            <form>
-                <label htmlFor="postTitle">Post Title:</label>
-                <input
-                    type="text"
-                    id="postTitle"
-                    name="postTitle"
-                    value={title}
-                    onChange={onTitleChanged}
-                />
-                <label htmlFor="postAuthor">Author:</label>
-                <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
-                    <option value=""></option>
-                    {usersOptions}
-                </select>
-                <label htmlFor="postContent">Content:</label>
-                <textarea
-                    id="postContent"
-                    name="postContent"
-                    value={content}
-                    onChange={onContentChanged}
-                />
-                <button
-                    type="button"
-                    onClick={onSavePostClicked}
-                    disabled={!canSave}
-                >
-                    Save Post
-                </button>
-                <button className="deleteButton"
-                    type="button"
-                    onClick={onDeletePostClicked}
-                >
-                    Delete Post
-                </button>
+        <section className="max-w-xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">Edit Post</h2>
+            <form className="space-y-4">
+                <div>
+                    <label htmlFor="postTitle" className="block text-gray-700 font-medium mb-2">Post Title:</label>
+                    <input
+                        type="text"
+                        id="postTitle"
+                        name="postTitle"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        value={title}
+                        onChange={onTitleChanged}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="postAuthor" className="block text-gray-700 font-medium mb-2">Author:</label>
+                    <select
+                        id="postAuthor"
+                        value={userId}
+                        onChange={onAuthorChanged}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    >
+                        <option value=""></option>
+                        {usersOptions}
+                    </select>
+                </div>
+                <div>
+                    <label htmlFor="postContent" className="block text-gray-700 font-medium mb-2">Content:</label>
+                    <textarea
+                        id="postContent"
+                        name="postContent"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        value={content}
+                        onChange={onContentChanged}
+                    />
+                </div>
+                <div className="flex justify-between items-center">
+                    <button
+                        type="button"
+                        onClick={onSavePostClicked}
+                        disabled={!canSave}
+                        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md disabled:bg-gray-300"
+                    >
+                        Save Post
+                    </button>
+                    <button
+                        type="button"
+                        onClick={onDeletePostClicked}
+                        className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md"
+                    >
+                        Delete Post
+                    </button>
+                </div>
             </form>
         </section>
     )

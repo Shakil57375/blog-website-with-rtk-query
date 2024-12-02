@@ -1,17 +1,16 @@
-import { parseISO, formatDistanceToNow } from 'date-fns';
+import React from 'react';
+import { formatDistanceToNow } from 'date-fns';
 
 const TimeAgo = ({ timestamp }) => {
-    // let timeAgo = ''
-    // if (timestamp) {
-    //     const date = parseISO(timestamp)
-    //     const timePeriod = formatDistanceToNow(date)
-    //     timeAgo = `${timePeriod} ago`
-    // }
+  const date = new Date(timestamp);
 
-    // return (
-    //     <span title={timestamp}>
-    //         &nbsp; <i>{timeAgo}</i>
-    //     </span>
-    // )
-}
-export default TimeAgo
+  if (isNaN(date.getTime())) {
+    console.error(`Invalid timestamp: '${timestamp}'`);
+    return <span>Invalid Date</span>;
+  }
+
+  const timeAgo = formatDistanceToNow(date, { addSuffix: true });
+  return <span>{timeAgo}</span>;
+};
+
+export default TimeAgo;

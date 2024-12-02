@@ -12,7 +12,7 @@ const PostAuthor = ({ userId }) => {
 
     return (
         <span>
-            by {author ? <Link to={`/user/${userId}`}>{author.name}</Link> : 'Unknown author'}
+            by {author ? <Link className="underline" to={`/user/${userId}`}>{author.name}</Link> : 'Unknown author'}
         </span>
     );
 };

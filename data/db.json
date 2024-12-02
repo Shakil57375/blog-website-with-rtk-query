@@ -167,30 +167,11 @@
       }
     },
     {
-      "userId": 1,
-      "id": "8",
-      "title": "dolorem dolore est ipsam",
-      "body": "dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae",
-      "reactions": {
-        "thumbsUp": 7,
-        "wow": 2,
-        "heart": 3,
-        "rocket": 1,
-        "coffee": 6
-      }
-    },
-    {
-      "userId": 1,
       "id": "10",
-      "title": "optio molestias id quia eum",
+      "title": "This is the post I edited now",
       "body": "quo et expedita modi cum officia vel magni\ndoloribus qui repudiandae\nvero nisi sit\nquos veniam quod sed accusamus veritatis error",
-      "reactions": {
-        "thumbsUp": 1,
-        "wow": 0,
-        "heart": 0,
-        "rocket": 0,
-        "coffee": 0
-      }
+      "userId": 3,
+      "date": "2024-12-02T08:44:36.271Z"
     },
     {
       "title": "Hello",
@@ -233,6 +214,20 @@
       "body": "xczvxcvzxzcv",
       "userId": 2,
       "date": "2024-12-02T06:03:18.002Z",
+      "reactions": {
+        "thumbsUp": 1,
+        "wow": 1,
+        "heart": 0,
+        "rocket": 0,
+        "coffee": 0
+      }
+    },
+    {
+      "id": "6b9b",
+      "title": "This is a new post",
+      "body": "ssdfa",
+      "userId": 1,
+      "date": "2024-12-02T08:26:34.382Z",
       "reactions": {
         "thumbsUp": 1,
         "wow": 1,
